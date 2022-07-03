@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday 💙</title>
+  <link rel="shortcut icon" href="favicon.png">
+</head>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap');
+
+  * {
+    font-family: 'Dancing Script', cursive;
+  }
+
+  body {
+    margin: 0;
+    background-color: #1d1e22;
+
+  }
+
+  #parallax {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background-image: url(https://matthew.wagerfield.com/parallax/assets/images/wave-paint.png), url(https://matthew.wagerfield.com/parallax/assets/images/wave-plain.png), url(https://matthew.wagerfield.com/parallax/assets/images/wave-paint.png);
+    background-repeat: repeat-x;
+    background-position: bottom;
+    background-position: 50% 50%;
+  }
+
+  .rain {
+    background-image: linear-gradient(to bottom, #030420, #000000 70%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  hr {
+    width: 50px;
+    border-color: transparent;
+    border-right-color: rgba(255, 255, 255, 0.7);
+    border-right-width: 50px;
+    position: absolute;
+    bottom: 100%;
+    transform-origin: 100% 50%;
+    animation-name: rain;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+
+  @keyframes rain {
+    from {
+      transform: rotate(105deg) translateX(0);
+    }
+
+    to {
+      transform: rotate(105deg) translateX(calc(100vh + 20px));
+    }
+  }
+
+  #bird {
+    top: 20%;
+    display: inline;
+    position: absolute;
+    background-image: url(https://matthew.wagerfield.com/parallax/assets/images/board-birds.png);
+    background-repeat: repeat;
+    background-position: 50% 50%;
+  }
+
+  h1 {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    text-transform: uppercase;
+    opacity: .2;
+    font-size: 70px;
+  }
+</style>
+
+<body>
+  <div class="rain">
+    <div id="parallax">
+      <h1 style="text-align: center;">Happy Birthday To you </h1>
+      <img src="https://matthew.wagerfield.com/parallax/assets/images/board-birds.png" alt="">
+    </div>
+  </div>
+</body>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Add event listener
+    document.addEventListener("mousemove", parallax);
+    const elem = document.querySelector("#parallax");
+    // Magic happens here
+    function parallax(e) {
+      let _w = window.innerWidth / 2;
+      let _h = window.innerHeight / 2;
+      let _mouseX = e.clientX;
+      let _mouseY = e.clientY;
+      let _depth1 = `${50 - (_mouseX - _w) * 0.01}% ${100 - (_mouseY - _h) * 0.01}%`;
+      let _depth2 = `${50 - (_mouseX - _w) * 0.02}% ${100 - (_mouseY - _h) * 0.02}%`;
+      let _depth3 = `${50 - (_mouseX - _w) * 0.04}% ${100 - (_mouseY - _h) * 0.04}%`;
+      let x = `${_depth3}, ${_depth2}, ${_depth1}`;
+      elem.style.backgroundPosition = x;
+    }
+
+    let hrElement;
+    let counter = 100;
+    for (let i = 0; i < counter; i++) {
+      hrElement = document.createElement("HR");
+
+      hrElement.style.left = Math.floor(Math.random() * window.innerWidth) + "px";
+      hrElement.style.animationDuration = 0.2 + Math.random() * 0.3 + "s";
+      hrElement.style.animationDelay = Math.random() * 5 + "s";
+
+      document.body.appendChild(hrElement);
+    }
+  })
+</script>
+
+</html>
